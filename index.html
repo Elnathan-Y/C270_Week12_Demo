@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team 5's Webpage</title>
-
-    <title>My Webpage on Nginx1</title>
-
+    <title>Team 5’s Webpage</title>
 
     <style>
         body {
@@ -28,21 +24,35 @@
 </head>
 <body>
 
-    <h1>Welcome to Team 5's amazing Custom made  Nginx Page</h1>
+    <h1>Welcome to Team 5's amazing Custom made Nginx Page</h1>
     <p>Select a color and click the button to change the background color.</p>
 
     <!-- Color Picker -->
     <input type="color" id="colorPicker">
-    
     <!-- Button to Change Background -->
     <button onclick="changeBackground()">Change Background</button>
 
+    <br><br>
+    
+    <p>Select a button to change the font style.</p>
+    <!-- Button to Change Font -->
+    <button onclick="changeFont()">Change Font Style</button>
+
     <script>
+        // Function to change background color
         function changeBackground() {
-            // Get the selected color
             var selectedColor = document.getElementById("colorPicker").value;
-            // Change the background color
             document.body.style.backgroundColor = selectedColor;
+        }
+
+        // Function to change font style using API
+        function changeFont() {
+            fetch('http://localhost:3000/change-font')
+                .then(response => response.json())
+                .then(data => {
+                    document.body.style.fontFamily = data.font;
+                })
+                .catch(error => console.error('Error fetching font:', error));
         }
     </script>
 
