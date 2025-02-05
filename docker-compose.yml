@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    image: your-dockerhub-username/html-docker-app:latest
+    ports:
+      - "8080:80"
+    deploy:
+      replicas: 3  # 3 replicas for scalability
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+                - node.role == worker
+                 
+
+                  
